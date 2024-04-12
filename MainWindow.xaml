@@ -1,0 +1,58 @@
+﻿<Window x:Class="WpfAppCallingApi.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfAppCallingApi"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Label x:Name="lblName" Content="Full_name: " HorizontalAlignment="Left" Margin="63,40,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblDateBirth" Content="Date_birth: " HorizontalAlignment="Left" Margin="63,71,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblPhoneNumber" Content="Phone_number:" HorizontalAlignment="Left" Margin="63,102,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblEmail" Content="Email: " HorizontalAlignment="Left" Margin="63,133,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblAddress" Content="Address: " HorizontalAlignment="Left" Margin="63,164,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtName" HorizontalAlignment="Left" Margin="156,44,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130"/>
+        <TextBox x:Name="txtDateBirth" HorizontalAlignment="Left" Margin="156,75,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130"/>
+        <TextBox x:Name="txtPhoneNumber" HorizontalAlignment="Left" Margin="156,106,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130"/>
+        <TextBox x:Name="txtEmail" HorizontalAlignment="Left" Margin="156,137,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130"/>
+        <TextBox x:Name="txtAddress" HorizontalAlignment="Left" Margin="156,168,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130"/>
+        <TextBox x:Name="txtPatientId" Visibility="Hidden" HorizontalAlignment="Left" Margin="156,21,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="btnSavePatient" Content="Save Patient" HorizontalAlignment="Left" Margin="156,0,0,0" VerticalAlignment="Center" Width="120" Click="btnSavePatient_Click"/>
+        <DataGrid x:Name="dgPatient" Margin="291,44,19,20"
+                  xmlns:my="http://schemas.microsoft.com/wpf/2008/toolkit"
+                  CanUserAddRows="True"
+                  ItemsSource="{Binding}"
+                  AutoGenerateColumns="False" SelectionChanged="dgPatient_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Patient ID" Binding="{Binding Path=Id}"/>
+                <DataGridTextColumn Header="Full_name" Binding="{Binding Path=fullName}"/>
+                <DataGridTextColumn Header="Date_birth" Binding="{Binding Path=dateBirth}"/>
+                <DataGridTextColumn Header="PhoneNumber" Binding="{Binding Path=phoneNumber}"/>
+                <DataGridTextColumn Header="Email" Binding="{Binding Path=email}"/>
+                <DataGridTextColumn Header="Address" Binding="{Binding Path=address}"/>
+                <DataGridTemplateColumn Header="Edit Action">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="btnEditPatients">
+                                Edit
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Delete Action">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="btnDeletePatients">
+                                Delete
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="btnLoadPatients" Content="Load Patients" HorizontalAlignment="Left" Margin="291,19,0,0" VerticalAlignment="Top" Width="490" Click="btnLoadPatients_Click"/>
+        <Label x:Name="lblMessage" Content="" HorizontalAlignment="Left" Margin="157,242,0,0" VerticalAlignment="Top" Width="119"/>
+
+    </Grid>
+</Window>
